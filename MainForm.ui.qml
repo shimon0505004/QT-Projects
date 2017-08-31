@@ -5,6 +5,7 @@ Rectangle {
 
     width: 800
     height: 600
+    property alias usernameInput: usernameInput
     property alias loginButton: loginButton
     property alias loginButtonText: loginButtonText
     property alias passwordInput: passwordInput
@@ -119,9 +120,11 @@ Rectangle {
 
             Text {
                 id: usernameLabel
-                height: 20
+                height: 25
                 color: "#ffffff"
                 text: qsTr("Username :")
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
                 anchors.left: parent.left
                 anchors.leftMargin: 30
                 anchors.top: parent.top
@@ -131,9 +134,12 @@ Rectangle {
 
             Text {
                 id: passwordLabel
-                height: 20
+                height: 25
                 color: "#ffffff"
                 text: qsTr("Password :")
+                textFormat: Text.PlainText
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignHCenter
                 anchors.top: parent.top
                 anchors.topMargin: 64
                 anchors.left: parent.left
@@ -141,73 +147,98 @@ Rectangle {
                 font.pixelSize: 12
             }
 
-            TextInput {
-                id: usernameInput
-                height: 20
-                text: qsTr("Text Input")
+            Rectangle {
+                id: usernameInputBackground
+                height: 25
+                color: "#ffffff"
+                radius: 1
                 anchors.right: parent.right
                 anchors.rightMargin: 30
+                anchors.left: parent.left
+                anchors.leftMargin: 105
                 anchors.top: parent.top
                 anchors.topMargin: 32
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                font.pixelSize: 12
 
-                Rectangle {
-                    id: usernameInputBackground
-                    color: "#ffffff"
-                    radius: 1
-                    anchors.fill: parent
+                TextInput {
+                    id: usernameInput
+                    y: 32
+                    height: 19
+                    anchors.right: parent.right
+                    anchors.rightMargin: 20
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 4
+                    anchors.topMargin: 6
+                    anchors.top: parent.top
+                    topPadding: -1
+                    padding: 0
+                    font.capitalization: Font.MixedCase
+                    font.family: "Verdana"
+                    horizontalAlignment: Text.AlignLeft
+                    font.pixelSize: 12
                 }
             }
 
-            TextInput {
-                id: passwordInput
-                height: 20
-                text: qsTr("Text Input")
+            Rectangle {
+                id: passwordInputBackground
+                height: 25
+                color: "#ffffff"
+                radius: 5
                 anchors.right: parent.right
                 anchors.rightMargin: 30
+                anchors.left: parent.left
+                anchors.leftMargin: 105
                 anchors.top: parent.top
                 anchors.topMargin: 64
-                anchors.left: parent.left
-                anchors.leftMargin: 105
-                font.pixelSize: 12
 
-                Rectangle {
-                    id: passwordInputBackground
-                    color: "#ffffff"
-                    radius: 5
-                    anchors.fill: parent
+                TextInput {
+                    id: passwordInput
+                    text: qsTr("")
+                    echoMode: TextInput.Password
+                    font.pointSize: 12
+                    anchors.right: parent.right
+                    anchors.rightMargin: 20
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
+                    selectionColor: "#000080"
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: 4
+                    anchors.top: parent.top
+                    anchors.topMargin: 6
+                    topPadding: 2
+                    horizontalAlignment: Text.AlignLeft
                 }
             }
 
-            MouseArea {
-                id: loginButton
-                anchors.right: parent.right
-                anchors.rightMargin: 30
+            Rectangle {
+                id: loginButtonBackground
+                width: 300
+                height: 27
+                color: "#27a9e3"
+                radius: 10
                 anchors.left: parent.left
                 anchors.leftMargin: 30
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 78
                 anchors.top: parent.top
                 anchors.topMargin: 98
-
-                Rectangle {
-                    id: loginButtonBackground
-                    color: "#27a9e3"
-                    radius: 10
-                    anchors.fill: parent
-                }
 
                 Text {
                     id: loginButtonText
                     color: "#ffffff"
                     text: qsTr("Login")
-                    verticalAlignment: Text.AlignVCenter
                     anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
                     font.bold: false
                     horizontalAlignment: Text.AlignHCenter
                     font.pixelSize: 12
+
+                    MouseArea {
+                        id: loginButton
+                        x: 0
+                        y: 0
+                        anchors.fill: parent
+                        hoverEnabled: true
+                    }
                 }
             }
         }
